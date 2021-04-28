@@ -60,6 +60,18 @@ main section.categories-show {
         }
       }
 
+      aside.out {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px;
+        color: white;
+        background-color: #f2acac;
+        border-top-left-radius: 4px;
+        border-bottom-right-radius: 20px;
+        font-size: 1em;
+      }
+
     }
   }
 }
