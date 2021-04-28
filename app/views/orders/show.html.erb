@@ -4,7 +4,13 @@
     <h1>Order #<%= @order.id %></h1>
   </header>
 
-  <% p @order %>
+  <% p 'first item products', @order.line_items[0] %>
+
+  <% @order.line_items.each do |item|  %>
+    <% puts 'item_price_cents', item.item_price_cents %>
+    <% puts 'item quantity', item.quantity %>
+    <% p 'item product name', item.product.name %>
+  <% end %>
 
   <div class="order-summary jumbotron">
     <h4>Thank you for your order!</h4>
@@ -22,8 +28,8 @@
           </tr>
         </thead>
         <tbody>
-          <% enhanced_cart.each do |item| %>
-            <%= render 'item', product: item[:product], quantity: item[:quantity].to_i %>
+          <% @order.line_items.each do |item| %>
+            <%= render 'item', product: item.product, quantity: item.quantity.to_i %>
           <% end %>
         </tbody>
         <tfoot>
