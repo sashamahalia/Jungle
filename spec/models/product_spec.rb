@@ -9,7 +9,11 @@ RSpec.describe Product, type: :model do
       expect(subject).to be_valid
     end
 
-    it "is not valid without a name"
+    it "is not valid without a name" do
+      subject.name = nil
+      expect(subject).to_not be_valid
+      expect(subject.errors.full_messages[0]).to eql("Name can't be blank")
+    end
     it "is not valid without a price"
     it "is not valid without a quantity"
     it "is not valid without a category"
