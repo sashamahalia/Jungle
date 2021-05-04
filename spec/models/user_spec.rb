@@ -14,10 +14,17 @@ RSpec.describe User, type: :model do
       expect(subject).to_not be_valid
       expect(subject.errors.full_messages[0]).to eql("Password confirmation doesn't match Password")
     end
-    it "is not valid when passwords don't match" do
-      subject.password_confirmation = "okblah"
+    it "is not valid when password confirmation isn't included" do
+      subject.password_confirmation = nil
       expect(subject).to_not be_valid
-      expect(subject.errors.full_messages[0]).to eql("Password confirmation doesn't match Password")
+      expect(subject.errors.full_messages[0]).to eql("Password confirmation can't be blank")
+    end
+    it "is not valid when email isn't unique" do
+      same_email_user = User.new(name: 'billy woods', email: 'hunterxhunter@gmail.com', password: 'fruitcake', password_confirmation: 'fruitcake')
+      same_email_user.save!
+      subject.email = 'HunterxHunter@gmail.com'
+      expect(subject).to_not be_valid
+      expect(subject.errors.full_messages[0]).to eql("Email has already been taken")
     end
   end
 end
