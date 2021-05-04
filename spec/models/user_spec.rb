@@ -46,4 +46,18 @@ RSpec.describe User, type: :model do
       expect(User.authenticate_with_credentials("hunterxhunter@gmail.com", "okcomputer")).to eql(User.find_by(email: "hunterxhunter@gmail.com"))
     end
   end
+  describe 'login' do
+    subject {
+      described_class.new(first_name: 'bob', last_name: 'hunter', email: 'hunterxhunter@gmail.com', password: 'okcomputer', password_confirmation: 'okcomputer')
+    }
+    it 'logs in if email has extra whitespace around it' do
+      subject.save!
+      expect(User.authenticate_with_credentials("  hunterxhunter@gmail.com", "okcomputer")).to eql(User.find_by(email: "hunterxhunter@gmail.com"))
+    end
+    it 'logs in if email has capital letters in it it' do
+      subject.save!
+      expect(User.authenticate_with_credentials("  hunterXhunTer@gmail.com", "okcomputer")).to eql(User.find_by(email: "hunterxhunter@gmail.com"))
+    end
+
+  end
 end
