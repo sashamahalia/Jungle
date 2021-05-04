@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  validates :password, presence: true
-  validates :password_confirmation, presence: true
+  validates_presence_of :password
+  validates_presence_of :password_confirmation, :if => :password_digest_changed?
 
 end
