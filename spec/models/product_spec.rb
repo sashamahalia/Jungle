@@ -14,8 +14,20 @@ RSpec.describe Product, type: :model do
       expect(subject).to_not be_valid
       expect(subject.errors.full_messages[0]).to eql("Name can't be blank")
     end
-    it "is not valid without a price"
-    it "is not valid without a quantity"
-    it "is not valid without a category"
+    it "is not valid without a price" do
+      subject.price_cents = nil
+      expect(subject).to_not be_valid
+      expect(subject.errors.full_messages[2]).to eql("Price can't be blank")
+    end
+    it "is not valid without a quantity" do
+      subject.quantity = nil
+      expect(subject).to_not be_valid
+      expect(subject.errors.full_messages[0]).to eql("Quantity can't be blank")
+    end
+    it "is not valid without a category" do
+      subject.category_id = nil
+      expect(subject).to_not be_valid
+      expect(subject.errors.full_messages[0]).to eql("Category can't be blank")
+    end
   end
 end
