@@ -33,4 +33,17 @@ RSpec.describe User, type: :model do
       expect(subject.errors.full_messages[0]).to include("Password is too short")
     end
   end
+  describe '.authenticate_with_credentials' do
+    subject {
+      described_class.new(first_name: 'bob', last_name: 'hunter', email: 'hunterxhunter@gmail.com', password: 'okcomputer', password_confirmation: 'okcomputer')
+    }
+    it "returns nil if validation fails" do
+      subject.save!
+      expect(User.authenticate_with_credentials("hunterxhunter@gmail.com", "computer")).to eql(nil)
+    end
+    it "returns an instance of the user if validation passes" do
+      subject.save!
+      expect(User.authenticate_with_credentials("hunterxhunter@gmail.com", "okcomputer")).to eql(User.find_by(email: "hunterxhunter@gmail.com"))
+    end
+  end
 end

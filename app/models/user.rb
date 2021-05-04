@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  attr_accessor :authenticate_with_credentials
+
   has_secure_password
 
   validates_length_of :password, minimum: 3
@@ -11,6 +13,14 @@ class User < ActiveRecord::Base
   # adapted from https://gist.github.com/flarnie/6257056
   def normalize_email
     self.email = self.email.downcase.strip
+  end
+
+  def self.authenticate_with_credentials email, password
+    user = User.find_by(email: email)
+    if (user.authenticate(password))
+      return user
+    end
+    nil
   end
 
 end
