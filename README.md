@@ -1,6 +1,7 @@
 # Jungle
 
 A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
+Users can create an account, add/remove items to a cart and pay for products with a credit card, sort products by category. Site admin can use basic authentication to be able to create new categories and products.
 
 ## Additional Steps for Apple M1 Machines
 
@@ -31,3 +32,5 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 * Rails 4.2 [Rails Guide](http://guides.rubyonrails.org/v4.2/)
 * PostgreSQL 9.x
 * Stripe
+
+## Dependencies
