@@ -33,4 +33,6 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 * PostgreSQL 9.x
 * Stripe
 
-## Dependencies
+## Screenshots
+![products view](https://github.com/sashamahalia/Jungle/blob/master/docs/products-page.png?raw=true)
+![admin products](https://github.com/sashamahalia/Jungle/blob/master/docs/admin-products.png?raw=true)
